@@ -1,0 +1,85 @@
+<style>.h2{
+  color: red;
+  font-weight:800;
+  font-style: bold;
+
+}
+.h3{
+  color:black;
+  font-size:20px;
+  font-style:bold;
+ 
+}
+.login-container{
+  padding: 30px;
+	width:100%;
+	height:100%;
+	background-position: center;
+  background-size: cover;
+}</style>
+
+<div class="login-container">
+
+<h1 align="center" class="display-4 mb-5 h2"> REGISTER</h1>
+<div style="width:40%; margin: 25px auto" >
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group h3">
+      <label>Enter Your Email</label>
+      <input [(ngModel)]="user.email" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter email" email required autofocus  #email="ngModel">
+      <div  *ngIf="email.invalid && (email.dirty ||email.touched)" >
+          <div *ngIf="email.errors.required" >
+              ENTER EMAIL
+          </div>
+          <div *ngIf="email.errors.email">
+              Invalid Email.
+          </div>
+      </div>
+    </div>
+    <div class="form-group h3">
+      <label><b>Enter Your Name</b></label>
+      <input [(ngModel)]="user.name" type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Your name" required #name="ngModel">
+        <div  *ngIf="name.invalid && (name.dirty ||name.touched)">
+            <div *ngIf="name.errors.required">
+                ENTER NAME
+            </div>
+            <div *ngIf="name.errors.minlength">
+                Name must be atleast 3 characters.
+            </div>
+        </div>
+    </div>
+    <div class="form-group h3">
+      <label><b>Enter Your Password</b></label>
+      <input  [(ngModel)]="user.password" type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password" minlength="3" required #password="ngModel">
+        <div  *ngIf="password.invalid && (password.dirty ||password.touched)">
+            <div *ngIf="password.errors.required">
+                Password is required.
+            </div>
+            <div *ngIf="password.errors.minlength">
+                Password must be atleast 3 characters .
+            </div>
+        </div>
+    </div>
+    <div class="form-group h3">
+      <label><b>Enter Your Phone Number</b></label>
+      <input [(ngModel)]="user.phone" type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="Phone" required #phone="ngModel" >
+        <div  *ngIf="phone.invalid && (phone.dirty ||phone.touched)">
+            <div *ngIf="phone.errors.required">
+                Phone is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-group h3">
+      <label><b>Enter Your Address</b></label>
+      <input [(ngModel)]="user.address" type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Address" required #address="ngModel">
+        <div  *ngIf="address.invalid && (address.dirty ||address.touched)">
+            <div *ngIf="address.errors.required">
+                Address is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Sign Up</button>
+    </div>
+  </form>
+</div>
+</div>

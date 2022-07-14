@@ -1,0 +1,62 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: richik
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    platform: postgres
+    initialization-mode: always
+    continue-on-error: true
+    
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: shopforhomeglwipro@gmail.com
+    password: ShopForShop@2
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+
+  jpa:
+    show-sql: false
+#    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    database: postgresql
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false;
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  #      dialect: org.hibernate.dialect.MySQL5Dialect
+
+#  jackson:
+#    default-property-inclusion: non_null
+#  redis:
+#    host: localhost
+#    port: 6379
+#  freemarker:
+#      cache: false
+
+
+
+
+  queries:
+    users-query: select email, password, active from users where email=?
+    roles-query: select email, role from users where email=?
+server:
+  servlet:
+    contextPath: /api
+
+jwtSecret: me.zhulin
+jwtExpiration: 86400
+
+
+  

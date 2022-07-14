@@ -1,0 +1,77 @@
+<style>
+.h{
+  font-weight: 500;
+  font-family: serif;
+  font-size: 60px;
+  color: red;
+  font-family:sans-serif;
+  font-weight:800;
+  font-style:bold;
+}
+.f{
+  font-size: 20px;
+  font-family: sans-serif;
+  font-style:bold;
+  color: black;
+  font-weight:300;
+  }
+  .w{
+    height: 20%;
+    width: 20%;
+    font-size: 20px;
+    color: red;
+  }
+  .card-title{
+    font-size: 40px;
+  }
+</style>
+
+<h1 align="center" class="display-4 mb-5 h">DETAILS</h1>
+<div class="row text-center justify-content-center">
+  <div class="col-lg-6 ">
+    <div class="card mb-4 ">
+      <img height="600" width="400" class="card-img-top" src="{{productInfo?.productIcon}}">
+      <div class="card-body">
+        <h4 class="card-title ">{{productInfo?.productName}}</h4>
+        <form name="form" #form='ngForm' (ngSubmit)="productInfo?.productStatus == 0 && addToCart()">
+          <div class="text-left">
+            <input hidden name="productId" [value]=productInfo?.productId>
+            <p class="card-test f"><strong>About Product: </strong>{{productInfo?.productDescription}}</p>
+            <p class="card-text f">
+              <strong>Price: </strong>
+              <label id="price">{{productInfo?.productPrice | currency:"INR":"symbol"}}</label>
+            </p>
+            <p class="card-text f" ><strong > Current Stock: </strong>{{productInfo?.productStock}}</p>
+
+            <label class="card-text f">
+              <strong>Quantity: </strong>
+              <input [(ngModel)]=count
+                     (change)="validateCount()"
+                     type="number"
+                     name="count"
+                     required
+                     min="1"
+                     [max]=productInfo?.productStock
+              >
+            </label>
+
+
+            <p class="card-text f"><strong>Total: </strong>
+              <label id="subtotal">{{count * productInfo?.productPrice | currency:"INR":"symbol"}}</label>
+            </p>
+          </div>
+
+        <i *ngIf="currentUser && addedToWishlist" class="fas fa-heart icon-4x w" (click)="handleRemoveFromWishList(productInfo.productId)">  </i>
+         <i *ngIf="currentUser && !addedToWishlist" class="far fa-heart icon-4x w" (click)="handleAddToWishList(productInfo.productId)">  </i>
+         
+          <button type="submit" [disabled]="!form.form.valid" *ngIf="productInfo?.productStatus == 0; else offBlock"
+                  class="btn btn-success btn-lg"
+          >Add to Cart
+          </button>
+          <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Out of Stock</a></ng-template>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

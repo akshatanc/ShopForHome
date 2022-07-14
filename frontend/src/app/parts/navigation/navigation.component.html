@@ -1,0 +1,224 @@
+<style>
+    .h{
+        font-size: 30px;
+        color:red;
+    
+    }
+	.cat{
+	    font-size: 25px;
+        color:green;
+    
+    }
+    .h1{
+        font-size: 20px;
+        color: red;
+    }
+    .navbar{
+        position: relative;
+    }
+    .lo{
+        color:red;
+    }
+	.a{
+        background-color :rgb(171, 204, 205);
+    }
+    .b{
+        background-color:aliceblue;
+    }
+    </style>
+
+    <!-- THIS IS MAIN....
+	
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand h" [routerLink]="root">
+            <p><b>SHOP FOR HOME</b></p>
+        </a>
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse h1" id="navbarNav">
+    
+            <div class="navbar-nav " *ngIf="!currentUser || currentUser.role == Role.Customer">
+    
+                <a class="nav-item nav-link  "
+                   routerLink="/category/0">
+                   FURNITURE
+                </a>
+                <a class="nav-item nav-link "
+                   routerLink="/category/1">
+                   STORAGE
+                </a>
+                <a class="nav-item nav-link "
+                   routerLink="/category/2">
+                   DECOR
+                </a>
+                <a class="nav-item nav-link "
+                   routerLink="/category/3">
+                   LIGHTING
+                </a>
+    
+               
+    
+            </div>
+
+    
+            <div class="navbar-nav ml-auto">
+                <a *ngIf="!currentUser || currentUser.role == Role.Customer"
+                        class="nav-item nav-link h1" routerLink="/cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    CART
+                </a>
+    
+                <div class="navbar-nav" *ngIf="currentUser && currentUser.role == Role.Manager">
+    
+                    <a class="nav-item nav-link h1"  routerLink="/discount">DISCOUNT</a>
+                    <a class="nav-item nav-link h1" (click)=getUsers() routerLink="/admin/user">USER</a>
+                    <a class="nav-item nav-link h1" routerLink="/seller/product">STOCKS</a>
+                </div>
+    
+                <div class="navbar-nav" *ngIf="currentUser && currentUser.role == Role.Customer">
+                    <a class="nav-item nav-link h1"  routerLink="/wishlist">WISHLIST</a>
+                </div>
+    
+                <ng-container *ngIf="currentUser; else noUser">
+                    
+                   
+                    <a class="nav-item nav-link " routerLink="/order">
+                        <i class="fas fa-list-ul"></i>
+                        ORDER
+                    </a>
+                    <a class="nav-item nav-link " routerLink="/profile">
+                        {{name}}
+                    </a>
+                    <a class="nav-item nav-link h1" (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                        LOGOUT
+                    </a>
+                </ng-container>
+                <ng-template #noUser>
+                    <a class="nav-item nav-link h1" routerLink="/login">
+                         LOGIN
+                    </a>
+                    <a class="nav-item nav-link h1" routerLink="/register">
+                        REGISTER
+                    </a>
+                </ng-template>
+                
+                </div>
+        </div>
+    </nav> 
+	
+	MAIN END-->
+	
+	<nav class="navbar-expand-lg a">
+        <a class="navbar-brand h" [routerLink]="root">
+            <p><b>SHOP FOR HOME</b></p>
+        </a>
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse h1" id="navbarNav">
+				
+                <div class="navbar-nav ml-auto">
+                <a *ngIf="!currentUser || currentUser.role == Role.Customer"
+                        class="nav-item nav-link h1" routerLink="/cart">
+                    <!-- <i class="fas fa-shopping-cart"></i>
+                    CART -->
+                </a>
+    
+                <div class="navbar-nav" *ngIf="currentUser && currentUser.role == Role.Manager">
+                    <a class="nav-item nav-link h1"  routerLink="/discount">COUPONS</a>
+                    <a class="nav-item nav-link h1" (click)=getUsers() routerLink="/admin/user">USERS</a>
+                    <a class="nav-item nav-link h1" routerLink="/seller/product">STOCKS</a>
+                </div>
+    
+                <div class="navbar-nav" *ngIf="currentUser && currentUser.role == Role.Customer">
+                    <a class="nav-item nav-link h1"  routerLink="/wishlist"> <i class="fas fa-heart icon-4x">
+					</i> 
+                    <!-- WISHLIST -->
+                </a>
+				
+				<a class="nav-item nav-link h1"  routerLink="/cart"> <i class="fas fa-shopping-cart">
+					</i> 
+                    <!-- cart2 -->
+                </a>
+				
+                </div>
+    
+                <ng-container *ngIf="currentUser; else noUser">
+                    
+                   <!-- <a class="nav-item nav-link"  routerLink="/discount">Discount</a>
+                    <a class="nav-item nav-link" (click)=getUsers() routerLink="/admin/user">Users</a>
+                    <a class="nav-item nav-link" routerLink="/seller/product">Stocks</a> -->
+                    <a class="nav-item nav-link h1" routerLink="/order">
+                        <i class="fas fa-list-ul"></i>
+                        <!-- ORDER -->
+                    </a>
+                    <a class="nav-item nav-link h1" routerLink="/profile">
+                        <i class="fas fa-address-book"></i>
+                       <!-- PROFILE -->
+                    </a>
+                    <a class="nav-item nav-link lo" (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                        LOGOUT
+                    </a>
+                </ng-container>
+                <ng-template #noUser>
+                    <a class="nav-item nav-link h1" routerLink="/login">
+                         LOGIN
+                    </a>
+                    <a class="nav-item nav-link h1" routerLink="/register">
+                        REGISTER
+                    </a>
+                </ng-template>
+                
+                </div>
+        </div>
+    </nav>
+
+	
+	<nav style="color:white" class="navbar navbar-expand-lg b">
+        <a class="navbar-brand cat" [routerLink]="root" *ngIf="!currentUser || currentUser.role == Role.Customer">
+         <p><b>CATAGORIES</b></p>
+		</a>
+		
+		<a class="navbar-brand cat" [routerLink]="root" *ngIf="currentUser && currentUser.role == Role.Manager">
+         <p><b>ADMIN PANEL </b></p>
+		</a>
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse h1" id="navbarNav">
+    
+            <div class="navbar-nav " *ngIf="!currentUser || currentUser.role == Role.Customer">
+    
+                <a class="nav-item nav-link  "
+                   routerLink="/category/0">
+                   FURNITURE
+                </a>
+                <a class="nav-item nav-link "
+                   routerLink="/category/1">
+                   STORAGE
+                </a>
+                <a class="nav-item nav-link "
+                   routerLink="/category/2">
+                   DECOR
+                </a>
+                <a class="nav-item nav-link "
+                   routerLink="/category/3">
+                   LIGHTING
+                </a>
+    
+               
+    
+            </div>
+
+  
+        </div>
+    </nav>
+	
+	

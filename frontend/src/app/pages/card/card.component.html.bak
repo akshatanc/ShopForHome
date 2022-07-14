@@ -1,0 +1,75 @@
+<style>
+.b{
+  font-weight: 700;
+  color: black;
+  font-size: 80px;
+  font-family: serif;
+  font-style:bold;
+}
+.c{
+color: black;
+
+}
+.g{
+  font-size: 18px;
+}
+.d{
+  color:black;
+}
+.card-title{
+  color: black;
+
+}
+.row{
+  border-radius: 30px;
+  padding: 10px;
+}
+.searching{
+  display: grid;
+  justify-content: end;
+  justify-items: end;
+  font-size:5px;
+
+}
+
+.display-4{
+   font-size:20px;
+   size: 5px;
+   border-radius : 40px;
+   padding : 5px;
+}
+.placeholder{
+  font-size:2px;
+}
+
+</style>
+
+<div class="searching" >
+<i style="width:90%;height:30%; font-size:22px; color:blue" class="fa fa-search">   Search Here  ~</i>
+<input style="width:90%;height:35%" type = "text" align="center" name="search" [(ngModel)]="searchText" placeholder ="   Search..."  class="display-4 mb-5" />
+<!-- <i class="fa fa-search"></i> -->
+
+</div>
+<div class="row card-deck text-center">
+ 
+  <div *ngFor="let productInfo of page?.content | filter:searchText" class="col-lg-4 ">
+    <div class="card mb-4"  >
+      <img height="250" width="170" class="card-img-top" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+      <div class="card-body">
+        <h2 class="card-title ">{{productInfo.productName}}</h2>
+        
+        <div class="text-left">
+          
+          <p class="card-text g"><strong class="d">Price: </strong>{{productInfo.productPrice | currency:"INR":"symbol"}}</p>
+          <p class="card-text g " ><strong class="c">Stock Left : </strong>{{productInfo.productStock}}</p>
+        </div>
+        <br>
+        <a routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock"
+           class="btn btn-success btn-lg "
+        ><i class='fas fa-indent' ></i>    Details</a>
+        <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<app-pagination  [currentPage]="page" ></app-pagination>
